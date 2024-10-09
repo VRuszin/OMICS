@@ -6,7 +6,7 @@ hello:
 	echo $(DIROUT)
 	ls -l $(DIR_HS)
 
-all: SRR26186566/SRR26186566.fastq
+all: SRR26186566/SRR26186566.fastq SRR26186566.stats
 
 # Download FASTQ files from RNA-seq single cell Illumina HiSeq 4000 reads
 # https://www.ncbi.nlm.nih.gov/sra?term=SRX21898392
@@ -22,6 +22,7 @@ SRR26186566/SRR26186566.sra:
 SRR26186566/SRR26186566.fastq: SRR26186566/SRR26186566.sra
 	 fasterq-dump -p SRR26186566 --outdir SRR26186566
 
+<<<<<<< HEAD
 # -------------------------------------------------------------------
 # Download human genome reference
 #
@@ -51,3 +52,7 @@ Homo_sapiens.GRCh38.$(VER_ENSEMBL).gtf.gz:
 # -------------------------------------------------------------------
 clobber:
 	rm -rf ${DIR_HS}
+=======
+SRR26186566.stats: SRR26186566/SRR26186566.fastq
+	seqkit stats SRR26186566/SRR26186566.fastq > $@
+>>>>>>> 4bb4e1f (downloading refs and Deb's notes in makefile)
